@@ -2,14 +2,23 @@
 @tailwind components;
 @tailwind utilities;
 
-html {
-  --line-color: #e5e7eb;
+:root {
+  --foreground: #000;
+  --background: #fff;
 }
 
-html.dark {
-  --line-color: rgba(255, 255, 255, 0.2);
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-feature-settings: "ss01", "ss02", "cv01", "cv02", "cv03";
 }
 
-.borderBlack {
-  @apply border border-black/10;
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+::selection {
+  background: #000;
+  color: #fff;
 }

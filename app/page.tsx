@@ -1,21 +1,105 @@
-import About from "@/components/about";
-import Contact from "@/components/contact";
-import Experience from "@/components/experience";
-import Intro from "@/components/intro";
-import Projects from "@/components/projects";
-import SectionDivider from "@/components/section-divider";
-import Skills from "@/components/skills";
+import Link from 'next/link'
+import Image from 'next/image'
 
 export default function Home() {
   return (
-    <main className="flex flex-col items-center px-4">
-      <Intro />
-      <SectionDivider />
-      <About />
-      <Projects />
-      <Skills />
-      <Experience />
-      <Contact />
+    <main className="min-h-screen md:h-screen flex flex-col px-6">
+      <div className="max-w-[900px] w-full mx-auto flex flex-col md:h-full">
+        {/* Container 1: Header - spans full width */}
+        <header className="pt-8 md:pt-16 pb-4 md:pb-6">
+          <div className="flex items-center gap-3">
+            {/* Avatar */}
+            <div className="w-[38px] h-[38px] flex-shrink-0">
+              <Image
+                src="/avatar.png"
+                alt="Daniel Brunsdon"
+                width={38}
+                height={38}
+                className="rounded-full object-cover"
+              />
+            </div>
+
+            {/* Name and Title */}
+            <div>
+              <h1 className="text-[13px] font-semibold leading-snug">Daniel Brunsdon</h1>
+              <p className="text-[13px] leading-snug text-neutral-400">
+                Product + DevRel + Growth
+              </p>
+            </div>
+          </div>
+        </header>
+
+        {/* Horizontal rule */}
+        <hr className="border-neutral-200" />
+
+        {/* Mobile nav */}
+        <nav className="flex md:hidden gap-4 text-[13px] text-neutral-400 py-4 border-b border-neutral-200">
+          <Link href="/" className="text-black">About</Link>
+          <Link href="/work" className="transition-all duration-200 hover:text-black hover:tracking-wide">Work</Link>
+          <Link href="/play" className="transition-all duration-200 hover:text-black hover:tracking-wide">Play</Link>
+        </nav>
+
+        {/* Container 2 + 3: Sidenav and Content */}
+        <div className="flex-1 flex md:gap-16 md:overflow-hidden">
+          {/* Container 2: Sidenav - fixed, no scroll (desktop only) */}
+          <nav className="hidden md:flex md:flex-col gap-2 text-[13px] text-neutral-400 pt-6 md:w-[100px] flex-shrink-0">
+            <Link href="/" className="text-black">About</Link>
+            <Link href="/work" className="transition-all duration-200 hover:text-black hover:tracking-wide">Work</Link>
+            <Link href="/play" className="transition-all duration-200 hover:text-black hover:tracking-wide">Play</Link>
+          </nav>
+
+          {/* Container 3: Content - scrolls within container */}
+          <div className="flex-1 md:overflow-y-auto pt-6 pb-16">
+            <div className="space-y-6 text-[13px] leading-relaxed">
+              <p>
+                I am a Product and DevRel leader building human.tech, and previously worked at Gitcoin and Twitter.
+              </p>
+
+              <p>
+                I build products that prioritize real people over bots. The internet should be built for humans, and I'm working to make that happen—through product strategy, developer relations, and business development.
+              </p>
+
+              <p>
+                When I'm not working, I'm usually vibe coding, making music and visual art, or spending time outdoors.
+              </p>
+
+              {/* Social links */}
+              <ul className="space-y-4 pt-4">
+                <li>
+                  <a href="mailto:dan.brunsdon@gmail.com" className="group block">
+                    <span className="font-semibold group-hover:underline">Email</span>
+                    <p className="text-neutral-400">dan.brunsdon@gmail.com</p>
+                  </a>
+                </li>
+                <li>
+                  <a href="https://x.com/lebraat" target="_blank" rel="noopener noreferrer" className="group block">
+                    <span className="font-semibold group-hover:underline">Twitter</span>
+                    <p className="text-neutral-400">@lebraat</p>
+                  </a>
+                </li>
+                <li>
+                  <a href="https://t.me/lebraat" target="_blank" rel="noopener noreferrer" className="group block">
+                    <span className="font-semibold group-hover:underline">Telegram</span>
+                    <p className="text-neutral-400">@lebraat</p>
+                  </a>
+                </li>
+                <li>
+                  <a href="https://www.linkedin.com/in/danbrunsdon/" target="_blank" rel="noopener noreferrer" className="group block">
+                    <span className="font-semibold group-hover:underline">LinkedIn</span>
+                    <p className="text-neutral-400">/in/danbrunsdon</p>
+                  </a>
+                </li>
+                <li>
+                  <a href="https://github.com/lebraat" target="_blank" rel="noopener noreferrer" className="group block">
+                    <span className="font-semibold group-hover:underline">GitHub</span>
+                    <p className="text-neutral-400">@lebraat</p>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
     </main>
-  );
+  )
 }
