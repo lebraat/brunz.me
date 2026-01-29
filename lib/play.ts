@@ -1,38 +1,14 @@
-export interface PlayEntry {
-  slug: string
-  title: string
-  date: string
-  discipline: string
-  description: string
-  content: string[]
-  images?: {
-    src: string
-    alt: string
-    caption?: string
-  }[]
-  links?: {
-    label: string
-    href: string
-  }[]
-}
+import { getEntries, getEntry, getAllSlugs, type EntryMeta, type Entry } from './mdx'
 
-export const playEntries: PlayEntry[] = [
-  {
-    slug: 'example-project',
-    title: 'Example Project',
-    date: '2024',
-    discipline: 'Side project',
-    description: 'A placeholder for your play projects.',
-    content: [
-      'Add your personal projects, experiments, and creative explorations here.',
-    ],
-  },
-]
+export type PlayEntry = EntryMeta
+export type PlayEntryFull = Entry
 
-export function getPlayEntry(slug: string): PlayEntry | undefined {
-  return playEntries.find((entry) => entry.slug === slug)
+export const playEntries = getEntries('play')
+
+export function getPlayEntry(slug: string): PlayEntryFull | null {
+  return getEntry('play', slug)
 }
 
 export function getAllPlaySlugs(): string[] {
-  return playEntries.map((entry) => entry.slug)
+  return getAllSlugs('play')
 }
