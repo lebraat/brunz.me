@@ -13,8 +13,8 @@ interface PageLayoutProps {
 export default function PageLayout({ activeNav, children }: PageLayoutProps) {
   const navItems: { href: string; label: string; key: NavItem }[] = [
     { href: '/', label: 'About', key: 'about' },
-    { href: '/work', label: 'Work', key: 'work' },
-    { href: '/play', label: 'Play', key: 'play' },
+    // { href: '/work', label: 'Work', key: 'work' },
+    // { href: '/play', label: 'Play', key: 'play' },
   ]
 
   const navLinkClass = (key: NavItem) =>
