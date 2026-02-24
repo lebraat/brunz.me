@@ -2,7 +2,6 @@ import Link from 'next/link'
 import PageLayout from '@/components/PageLayout'
 import { notFound } from 'next/navigation'
 import { getWorkEntry, getAllWorkSlugs } from '@/lib/work'
-import { serialize } from 'next-mdx-remote/serialize'
 import MDXContent from '@/components/MDXContent'
 
 export function generateStaticParams() {
@@ -25,8 +24,6 @@ export default async function WorkPage({ params }: { params: { slug: string } })
   if (!entry) {
     notFound()
   }
-
-  const mdxSource = await serialize(entry.content)
 
   return (
     <PageLayout activeNav="work">
@@ -51,7 +48,7 @@ export default async function WorkPage({ params }: { params: { slug: string } })
       </p>
 
       <div className="text-[13px] leading-relaxed">
-        <MDXContent source={mdxSource} />
+        <MDXContent source={entry.content} />
       </div>
 
       {entry.images && entry.images.length > 0 && (

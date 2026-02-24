@@ -1,15 +1,13 @@
-'use client'
-
-import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote'
+import { MDXRemote } from 'next-mdx-remote/rsc'
 
 interface MDXContentProps {
-  source: MDXRemoteSerializeResult
+  source: string
 }
 
 export default function MDXContent({ source }: MDXContentProps) {
   return (
     <div className="prose prose-sm prose-neutral max-w-none">
-      <MDXRemote {...source} />
+      <MDXRemote source={source} />
     </div>
   )
 }
