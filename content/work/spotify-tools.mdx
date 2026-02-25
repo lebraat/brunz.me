@@ -1,0 +1,57 @@
+---
+title: "Brunz: Spotify Tools"
+date: "2025"
+discipline: Full-stack engineering
+description: A Spotify playlist analyzer and AI artwork generator. Connects to your Spotify library, surfaces genre/artist/decade breakdowns for every playlist, then uses GPT-4o and DALL-E 3 to generate and upload custom cover art.
+images:
+  - src: /work/spotify-tools/landing.png
+    alt: Landing page — clean light-mode hero with feature cards
+    caption: Landing page with Geist typography and feature overview
+  - src: /work/spotify-tools/dashboard.png
+    alt: Dashboard showing playlist grid with search, filters, and sorting
+    caption: Dashboard — progressive loading, starring, and rich filtering across hundreds of playlists
+  - src: /work/spotify-tools/profile.png
+    alt: Playlist profile with genre bars, top artists, decade donut chart, and track list
+    caption: Playlist profile — genre distribution weighted by track count, responsive donut chart, and full track list
+  - src: /work/spotify-tools/artwork.png
+    alt: Artwork creator with AI summary, style reference, and generated cover art
+    caption: Artwork creator — AI summaries, custom queries, style references, and direct Spotify upload
+links:
+  - label: Live app
+    href: https://playlist-visuals-pqrkilx14-brunz-hustles.vercel.app
+  - label: Source code
+    href: https://github.com/lebraat/playlist-visuals
+---
+
+## Context
+
+I wanted a tool to manage the visual identity of my Spotify playlists — something that could analyze the music and generate cover art that actually reflects what's inside. Existing tools either showed shallow stats or had no AI generation. I wanted both in one place.
+
+## Stack
+
+- **Frontend**: Next.js 16 (App Router), TypeScript, Tailwind CSS v4
+- **Auth**: NextAuth.js v4 with Spotify OAuth + automatic token refresh
+- **APIs**: Spotify Web API (playlists, tracks, artists, image upload), OpenAI (GPT-4o for summaries, GPT-4o Vision for style analysis, DALL-E 3 for generation)
+- **Infra**: Vercel (serverless), sessionStorage cache with stale-while-revalidate
+
+## How it works
+
+After connecting your Spotify account, the app fetches your full playlist library with progressive pagination — the first 50 playlists appear immediately while the rest load in the background. Each playlist can be explored in a detail view with four analytics panels.
+
+**Genre distribution** is the most interesting technical challenge. Spotify doesn't tag tracks with genres directly — only artists have genre tags. So the app fetches all unique artists (up to 500), pulls their genre arrays, then weights each genre by how many tracks that artist contributes. An artist with 15 tracks in the playlist counts 15x toward their genres, not 1x. This produces counts that actually match what you'd expect.
+
+**Decade distribution** parses `release_date` from every track's album and groups into decade buckets. The donut chart is a pure SVG that scales responsively to fill its container.
+
+## Artwork generation
+
+The artwork pipeline has three optional inputs that combine into a DALL-E 3 prompt:
+
+1. **AI summary** — GPT-4o analyzes the playlist's genres, top artists, decades, and vibe to produce a ~500 character visual description
+2. **Custom query** — free-text input for specific style direction ("abstract watercolor", "retro synthwave grid")
+3. **Style reference** — upload a reference image that GPT-4o Vision analyzes into a transferable style description, persisted across playlists via localStorage
+
+The generated image can be downloaded or uploaded directly as the playlist cover via Spotify's image API. A canvas compositing layer optionally burns the playlist name into the bottom of the image with a gradient overlay.
+
+## Hardening
+
+Shipped with input validation on all API routes (type checks, length limits, URL allowlists), XSS protection (stripped HTML from playlist descriptions instead of using `dangerouslySetInnerHTML`), and a 500-artist cap to prevent runaway Spotify API calls on massive playlists.

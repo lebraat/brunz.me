@@ -56,9 +56,18 @@ export default async function WorkPage({ params }: { params: { slug: string } })
           {entry.images.map((image, index) => (
             <figure key={index}>
               <div className="bg-neutral-100 rounded-lg overflow-hidden">
-                <div className="aspect-video flex items-center justify-center text-neutral-400 text-sm">
-                  {image.alt}
-                </div>
+                {image.src ? (
+                  <img
+                    src={image.src}
+                    alt={image.alt}
+                    className="w-full"
+                    loading="lazy"
+                  />
+                ) : (
+                  <div className="aspect-video flex items-center justify-center text-neutral-400 text-sm">
+                    {image.alt}
+                  </div>
+                )}
               </div>
               {image.caption && (
                 <figcaption className="mt-2 text-[13px] text-neutral-400">
