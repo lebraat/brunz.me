@@ -1,0 +1,55 @@
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  html,
+  body {
+    margin: 0 !important;
+    padding: 0 !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  .resume-page {
+    padding: 0 !important;
+    max-width: 100% !important;
+  }
+  .resume-page-inner {
+    padding: 0.3in 0.4in !important;
+    max-width: 100% !important;
+  }
+  .resume-content {
+    margin-top: 0 !important;
+  }
+  @page {
+    margin: 0;
+    size: letter;
+  }
+  a {
+    text-decoration: none !important;
+  }
+  h2 {
+    page-break-after: avoid;
+  }
+  h3 {
+    page-break-after: avoid;
+  }
+  ul,
+  ol {
+    page-break-inside: avoid;
+  }
+}
+
+.resume-content h2 {
+  font-size: 15px;
+  font-weight: 600;
+  margin-top: 1.5em;
+  margin-bottom: 0.5em;
+  letter-spacing: -0.01em;
+}
+
+.resume-content h3 {
+  font-size: 14px;
+  font-weight: 600;
+  margin-top: 1.2em;
+  margin-bottom: 0.4em;
+}
