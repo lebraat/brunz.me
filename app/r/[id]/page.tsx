@@ -1,0 +1,58 @@
+import { notFound } from 'next/navigation'
+import { getResume, getAllResumeIds } from '@/lib/resumes'
+import MDXContent from '@/components/MDXContent'
+import DownloadButton from './DownloadButton'
+import './resume.css'
+
+export function generateStaticParams() {
+  return getAllResumeIds().map((id) => ({ id }))
+}
+
+export function generateMetadata({ params }: { params: { id: string } }) {
+  const resume = getResume(params.id)
+  if (!resume) return { title: 'Not Found' }
+
+  return {
+    title: resume.title,
+    robots: {
+      index: false,
+      follow: false,
+    },
+  }
+}
+
+export default async function ResumePage({ params }: { params: { id: string } }) {
+  const resume = getResume(params.id)
+
+  if (!resume) {
+    notFound()
+  }
+
+  return (
+    <div className="resume-page font-mono antialiased">
+      <div className="resume-page-inner max-w-[680px] mx-auto px-6 py-12 sm:py-16">
+        {/* Download button */}
+        <div className="no-print flex justify-end mb-8">
+          <DownloadButton />
+        </div>
+
+        {/* Header */}
+        <header className="mb-6">
+          <h1 className="text-[15px] font-semibold leading-snug tracking-tight">
+            Daniel Brunsdon
+          </h1>
+          <p className="text-[13px] text-neutral-400 mt-1">
+            Denver, CO &middot; linkedin.com/in/danbrunsdon &middot; @lebraat
+          </p>
+        </header>
+
+        <hr className="border-neutral-200 mb-6" />
+
+        {/* Resume content */}
+        <div className="resume-content text-[13px] leading-relaxed">
+          <MDXContent source={resume.content} />
+        </div>
+      </div>
+    </div>
+  )
+}
