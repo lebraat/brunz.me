@@ -45,6 +45,7 @@
   margin-top: 1.5em;
   margin-bottom: 0.5em;
   letter-spacing: -0.01em;
+  font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
 }
 
 .resume-content h3 {
@@ -52,4 +53,10 @@
   font-weight: 600;
   margin-top: 1.2em;
   margin-bottom: 0.4em;
+  font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+}
+
+.resume-content h3 + p {
+  font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+  font-size: 12px;
 }

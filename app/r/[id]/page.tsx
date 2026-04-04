@@ -49,7 +49,7 @@ export default async function ResumePage({ params }: { params: { id: string } })
         <hr className="border-neutral-200 mb-6" />
 
         {/* Resume content */}
-        <div className="resume-content text-[13px] leading-relaxed">
+        <div className="resume-content text-[13px] leading-relaxed font-sans">
           <MDXContent source={resume.content} />
         </div>
       </div>
