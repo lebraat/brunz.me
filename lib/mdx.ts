@@ -51,7 +51,11 @@ export function getEntries(type: 'work' | 'play'): EntryMeta[] {
     } as EntryMeta
   })
 
-  return entries
+  return entries.sort((a, b) => {
+    const yearA = Math.max(...(a.date.match(/\d{4}/g) || ['0']).map(Number))
+    const yearB = Math.max(...(b.date.match(/\d{4}/g) || ['0']).map(Number))
+    return yearB - yearA
+  })
 }
 
 export function getEntry(type: 'work' | 'play', slug: string): Entry | null {
