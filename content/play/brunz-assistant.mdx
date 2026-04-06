@@ -1,0 +1,48 @@
+---
+title: "BrunzAssistant"
+date: "2026"
+discipline: AI agent infrastructure
+description: A multi-agent AI assistant running on owned infrastructure with persistent memory, tool access via MCP, always-on cron agents, and Telegram integration. Not a wrapper around an API — an actual agent platform.
+links:
+  - label: Source code
+    href: https://github.com/lebraat
+---
+
+## Context
+
+I wanted to understand AI agents by building one that actually does useful work — not a demo, not a chatbot, but infrastructure I rely on daily for BD, CRM management, and personal tasks. The result is a multi-agent system running 24/7 on a Hetzner VPS with a Telegram interface.
+
+## Architecture
+
+The system runs on two layers:
+
+**Always-on agents** execute via cron on a set schedule. Each is optimized for a specific domain:
+
+- **Meeting Reviewer** — extracts decisions, action items, and summaries from meeting transcripts every morning
+- **CRM Health Check** — flags stale deals, overdue follow-ups, and promotion opportunities on weekdays
+- **GTM Tracker** — identifies upcoming deadlines and at-risk items daily
+- **Channel Reviewer** — analyzes partner channel activity for documentation updates
+- **Weekly Digests** — comprehensive summaries for work and personal domains
+
+**Interactive agents** respond to natural language commands via Telegram. "Update [company]" triggers a flow where the assistant reads recent conversation history, proposes CRM updates in Notion, and writes them on approval.
+
+## What makes it interesting
+
+**Persistent memory across sessions.** A layered memory architecture (instruction files, auto-memory, tool context) means the assistant maintains context about ongoing projects, preferences, and decisions across conversations — not just within a single prompt.
+
+**Tool access via MCP.** Model Context Protocol servers connect the assistant to Telegram, Notion, GitHub, and other services. It doesn't just generate text — it reads, writes, and acts across systems.
+
+**Owned infrastructure.** Everything runs on a VPS I control. Data stays on my hardware, not routed through third-party agent platforms. Git-versioned knowledge base means full audit trail.
+
+**Information architecture for AI consumption.** I designed structured templates and recipe systems specifically for how language models parse and act on information — a direct application of the IA skills I built at Twitter, now applied to agent context management.
+
+## Impact
+
+- **Reduced lead-to-CRM time from minutes to seconds** via automated Telegram-to-Notion pipeline
+- **3x measured productivity gain** on BD operations
+- **Full audit trail** of every pipeline interaction
+- **Always-on coverage** — agents work while I sleep
+
+## Takeaway
+
+Building this taught me that AI transformation isn't about adopting tools — it's about designing systems. The hard part isn't the model; it's the information architecture, the memory layer, the tool orchestration, and the feedback loops that make an agent actually reliable. This is the difference between "we use ChatGPT" and "we built agent infrastructure."
