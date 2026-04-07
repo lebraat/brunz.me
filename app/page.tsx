@@ -4,14 +4,6 @@ export default function Home() {
   return (
     <PageLayout activeNav="about">
       <div className="space-y-6 text-[13px] leading-relaxed">
-        <p className="stagger-item inline-flex items-center gap-2">
-          <span
-            className="pulse-dot inline-block h-[6px] w-[6px] rounded-full bg-emerald-500"
-            aria-hidden="true"
-          />
-          <span className="text-neutral-400">Currently building human.tech</span>
-        </p>
-
         <p className="stagger-item">
           I am a Product and DevRel leader building human.tech, and previously worked at Gitcoin and Twitter.
         </p>

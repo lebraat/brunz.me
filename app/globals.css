@@ -96,13 +96,4 @@ a {
   transform: scale(1);
 }
 
-/* Subtle pulse for "currently active" indicator dots. */
-@keyframes custom-pulse {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.3; }
-}
-
-.pulse-dot {
-  animation: custom-pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-}
 
