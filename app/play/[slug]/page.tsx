@@ -1,37 +1,41 @@
-import Link from 'next/link'
-import PageLayout from '@/components/PageLayout'
-import { notFound } from 'next/navigation'
-import { getPlayEntry, getAllPlaySlugs } from '@/lib/play'
-import MDXContent from '@/components/MDXContent'
+import Link from "next/link";
+import PageLayout from "@/components/PageLayout";
+import { notFound } from "next/navigation";
+import { getPlayEntry, getAllPlaySlugs } from "@/lib/play";
+import MDXContent from "@/components/MDXContent";
 
 export function generateStaticParams() {
-  return getAllPlaySlugs().map((slug) => ({ slug }))
+  return getAllPlaySlugs().map((slug) => ({ slug }));
 }
 
 export function generateMetadata({ params }: { params: { slug: string } }) {
-  const entry = getPlayEntry(params.slug)
-  if (!entry) return { title: 'Not Found' }
+  const entry = getPlayEntry(params.slug);
+  if (!entry) return { title: "Not Found" };
 
   return {
     title: `${entry.title} – Brunz`,
     description: entry.description,
-  }
+  };
 }
 
-export default async function PlayPage({ params }: { params: { slug: string } }) {
-  const entry = getPlayEntry(params.slug)
+export default async function PlayPage({
+  params,
+}: {
+  params: { slug: string };
+}) {
+  const entry = getPlayEntry(params.slug);
 
   if (!entry) {
-    notFound()
+    notFound();
   }
 
   return (
-    <PageLayout activeNav="play">
+    <PageLayout activeNav="work">
       <Link
-        href="/play"
+        href="/work"
         className="inline-flex items-center gap-1 text-[13px] text-neutral-400 hover:text-black transition-colors mb-8"
       >
-        <span>←</span> Back to play
+        <span>←</span> Back to work
       </Link>
 
       <header className="mb-8">
@@ -43,9 +47,7 @@ export default async function PlayPage({ params }: { params: { slug: string } })
         </p>
       </header>
 
-      <p className="text-[13px] leading-relaxed mb-8">
-        {entry.description}
-      </p>
+      <p className="text-[13px] leading-relaxed mb-8">{entry.description}</p>
 
       <div className="text-[13px] leading-relaxed">
         <MDXContent source={entry.content} />
@@ -99,5 +101,5 @@ export default async function PlayPage({ params }: { params: { slug: string } })
         </div>
       )}
     </PageLayout>
-  )
+  );
 }
