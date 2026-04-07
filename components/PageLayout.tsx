@@ -26,9 +26,9 @@ export default function PageLayout({ activeNav, children }: PageLayoutProps) {
     <main className="min-h-screen md:h-screen flex flex-col px-6">
       <div className="max-w-[900px] w-full mx-auto flex flex-col md:h-full">
         {/* Header */}
-        <header className="pt-8 md:pt-16 pb-4 md:pb-6">
+        <header className="stagger-item pt-8 md:pt-16 pb-4 md:pb-6">
           <div className="flex items-center gap-3">
-            <div className="w-[38px] h-[38px] flex-shrink-0">
+            <div className="w-[38px] h-[38px] flex-shrink-0 transition-transform duration-300 hover:scale-105">
               <Image
                 src="/avatar.png"
                 alt="Daniel Brunsdon"

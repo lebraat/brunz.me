@@ -27,14 +27,16 @@ export default async function PlayPage({ params }: { params: { slug: string } })
 
   return (
     <PageLayout activeNav="play">
-      <Link
-        href="/play"
-        className="inline-flex items-center gap-1 text-[13px] text-neutral-400 hover:text-black transition-colors mb-8"
-      >
-        <span>←</span> Back to play
-      </Link>
+      <div className="stagger-item">
+        <Link
+          href="/play"
+          className="inline-flex items-center gap-1 text-[13px] text-neutral-400 hover:text-black transition-colors mb-8 group"
+        >
+          <span className="inline-block transition-transform duration-200 group-hover:-translate-x-0.5">←</span> Back to play
+        </Link>
+      </div>
 
-      <header className="mb-8">
+      <header className="stagger-item mb-8">
         <h2 className="text-[13px] font-semibold leading-snug mb-1">
           {entry.title}
         </h2>
@@ -43,11 +45,11 @@ export default async function PlayPage({ params }: { params: { slug: string } })
         </p>
       </header>
 
-      <p className="text-[13px] leading-relaxed mb-8">
+      <p className="stagger-item text-[13px] leading-relaxed mb-8">
         {entry.description}
       </p>
 
-      <div className="text-[13px] leading-relaxed">
+      <div className="stagger-item text-[13px] leading-relaxed">
         <MDXContent source={entry.content} />
       </div>
 

@@ -4,46 +4,54 @@ export default function Home() {
   return (
     <PageLayout activeNav="about">
       <div className="space-y-6 text-[13px] leading-relaxed">
-        <p>
+        <p className="stagger-item inline-flex items-center gap-2">
+          <span
+            className="pulse-dot inline-block h-[6px] w-[6px] rounded-full bg-emerald-500"
+            aria-hidden="true"
+          />
+          <span className="text-neutral-400">Currently building human.tech</span>
+        </p>
+
+        <p className="stagger-item">
           I am a Product and DevRel leader building human.tech, and previously worked at Gitcoin and Twitter.
         </p>
 
-        <p>
+        <p className="stagger-item">
           From developer ecosystems around public conversation to privacy-preserving identity and Web3 onboarding—I keep ending up at the same question: how do we build infrastructure that serves real humans without gatekeeping access or sacrificing privacy?
         </p>
 
-        <p>
+        <p className="stagger-item">
           When I'm not working, I'm usually vibe coding, making music and visual art, or spending time outdoors.
         </p>
 
         <ul className="space-y-4 pt-4">
-          <li>
-            <a href="mailto:dan.brunsdon@gmail.com" className="group block">
-              <span className="font-semibold group-hover:underline">Email</span>
+          <li className="stagger-item">
+            <a href="mailto:dan.brunsdon@gmail.com" className="liquid-glass-item group block w-fit">
+              <span className="font-semibold underline decoration-neutral-200 underline-offset-2 decoration-2 transition-colors duration-200 group-hover:decoration-neutral-400">Email</span>
               <p className="text-neutral-400">dan.brunsdon@gmail.com</p>
             </a>
           </li>
-          <li>
-            <a href="https://x.com/lebraat" target="_blank" rel="noopener noreferrer" className="group block">
-              <span className="font-semibold group-hover:underline">Twitter</span>
+          <li className="stagger-item">
+            <a href="https://x.com/lebraat" target="_blank" rel="noopener noreferrer" className="liquid-glass-item group block w-fit">
+              <span className="font-semibold underline decoration-neutral-200 underline-offset-2 decoration-2 transition-colors duration-200 group-hover:decoration-neutral-400">Twitter</span>
               <p className="text-neutral-400">@lebraat</p>
             </a>
           </li>
-          <li>
-            <a href="https://t.me/lebraat" target="_blank" rel="noopener noreferrer" className="group block">
-              <span className="font-semibold group-hover:underline">Telegram</span>
+          <li className="stagger-item">
+            <a href="https://t.me/lebraat" target="_blank" rel="noopener noreferrer" className="liquid-glass-item group block w-fit">
+              <span className="font-semibold underline decoration-neutral-200 underline-offset-2 decoration-2 transition-colors duration-200 group-hover:decoration-neutral-400">Telegram</span>
               <p className="text-neutral-400">@lebraat</p>
             </a>
           </li>
-          <li>
-            <a href="https://www.linkedin.com/in/danbrunsdon/" target="_blank" rel="noopener noreferrer" className="group block">
-              <span className="font-semibold group-hover:underline">LinkedIn</span>
+          <li className="stagger-item">
+            <a href="https://www.linkedin.com/in/danbrunsdon/" target="_blank" rel="noopener noreferrer" className="liquid-glass-item group block w-fit">
+              <span className="font-semibold underline decoration-neutral-200 underline-offset-2 decoration-2 transition-colors duration-200 group-hover:decoration-neutral-400">LinkedIn</span>
               <p className="text-neutral-400">/in/danbrunsdon</p>
             </a>
           </li>
-          <li>
-            <a href="https://github.com/lebraat" target="_blank" rel="noopener noreferrer" className="group block">
-              <span className="font-semibold group-hover:underline">GitHub</span>
+          <li className="stagger-item">
+            <a href="https://github.com/lebraat" target="_blank" rel="noopener noreferrer" className="liquid-glass-item group block w-fit">
+              <span className="font-semibold underline decoration-neutral-200 underline-offset-2 decoration-2 transition-colors duration-200 group-hover:decoration-neutral-400">GitHub</span>
               <p className="text-neutral-400">@lebraat</p>
             </a>
           </li>
