@@ -3,7 +3,7 @@
 import Link from 'next/link'
 import Image from 'next/image'
 
-type NavItem = 'about' | 'work' | 'play'
+type NavItem = 'about' | 'work' | 'play' | 'music'
 
 interface PageLayoutProps {
   activeNav: NavItem
@@ -15,6 +15,7 @@ export default function PageLayout({ activeNav, children }: PageLayoutProps) {
     { href: '/', label: 'About', key: 'about' },
     { href: '/work', label: 'Work', key: 'work' },
     { href: '/play', label: 'Play', key: 'play' },
+    { href: '/music', label: 'Music', key: 'music' },
   ]
 
   const navLinkClass = (key: NavItem) =>
