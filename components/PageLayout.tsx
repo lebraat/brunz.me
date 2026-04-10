@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
+import AvatarPopup from "./AvatarPopup";
 
 type NavItem = "about" | "work" | "music";
 
@@ -28,15 +28,7 @@ export default function PageLayout({ activeNav, children }: PageLayoutProps) {
         {/* Header */}
         <header className="pt-8 md:pt-16 pb-4 md:pb-6">
           <div className="flex items-center gap-3">
-            <div className="w-[38px] h-[38px] flex-shrink-0">
-              <Image
-                src="/avatar.png"
-                alt="Daniel Brunsdon"
-                width={38}
-                height={38}
-                className="rounded-full object-cover"
-              />
-            </div>
+            <AvatarPopup />
             <div>
               <h1 className="text-[13px] font-semibold leading-snug">
                 Daniel Brunsdon
