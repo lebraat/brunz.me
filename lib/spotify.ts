@@ -51,7 +51,7 @@ export async function getPublicPlaylists(): Promise<SpotifyPlaylist[]> {
     `https://api.spotify.com/v1/users/${SPOTIFY_USER_ID}/playlists?limit=50`;
 
   while (url) {
-    const res = await fetch(url, {
+    const res: Response = await fetch(url, {
       headers: { Authorization: `Bearer ${token}` },
       next: { revalidate: 3600 },
     });
