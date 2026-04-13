@@ -1,0 +1,70 @@
+---
+title: "Command Center"
+date: "2026"
+tags: [play]
+discipline: Full-stack engineering, data pipelines, AI integration
+description: A personal operations dashboard consolidating health, finances, tasks, and relationships into a single data-dense interface — built from scaffold to production in one session with AI pair programming.
+---
+
+## Context
+
+I was managing my life across too many disconnected tools — Apple Reminders for tasks, spreadsheets for finances, Strava for workouts, a separate app for contacts. I wanted a single, unified dashboard that surfaces everything I need to see each day, with real data flowing in automatically.
+
+The result is Command Center: a Palantir-inspired dark-mode dashboard that consolidates five life domains into one interface, backed by automated data pipelines and an AI financial advisor.
+
+## What it does
+
+**Home Dashboard** — a daily briefing view showing priority tasks (with one-click complete), a 14-day workout effort chart, investment portfolio with sparkline, and recent bank transactions.
+
+![Command Center Home](/projects/command-center/home.png)
+
+**Health Tracking** — 744 historical Strava activities synced via OAuth API, with weekly volume charts, activity type breakdown, and effort visualization. Daily cron keeps it current.
+
+![Health Dashboard](/projects/command-center/health.png)
+
+**Task Management** — list and kanban board views with drag-and-drop, search, filters by status/priority/project, inline editing, and Telegram integration for quick capture.
+
+![Tasks Dashboard](/projects/command-center/tasks.png)
+
+**Financial Dashboard** — 12 bank and investment accounts auto-synced via SimpleFIN, 124 transactions, net worth history chart, asset allocation, and accounts split by assets vs liabilities.
+
+![Finance Dashboard](/projects/command-center/finance.png)
+
+**Personal CRM** — contacts with interaction tracking, groups with stale-contact detection, and interaction logging.
+
+**AI Financial Advisor** — Claude-powered chat that has full context of all accounts, balances, and profile facts. Auto-extracts new information from conversations.
+
+## Architecture
+
+| Layer | Choice |
+|-------|--------|
+| Framework | Next.js 16 (App Router), TypeScript |
+| UI | Blueprint.js v6 (Palantir design system), dark theme |
+| Database | Neon Postgres (serverless) + Drizzle ORM |
+| Charts | Recharts |
+| Auth | WebAuthn passkeys (Face ID / Touch ID) |
+| Data sync | Strava API, SimpleFIN, daily cron jobs |
+| AI | Anthropic Claude API (financial advisor) |
+| Infra | Vercel (app), Hetzner VPS (cron agents) |
+| DnD | @dnd-kit (task board) |
+
+The data pipeline runs on a VPS with five automated cron jobs:
+- **Strava sync** — pulls activities nightly
+- **SimpleFIN sync** — updates bank balances and transactions daily
+- **Net worth snapshot** — captures daily totals for historical tracking
+- **Morning briefing** — Telegram message with tasks, health, and finance summary
+- **Weekly workout summary** — delivered to Telegram every Sunday
+
+## What makes it interesting
+
+**Built in one session.** The entire application — scaffold to production with real data flowing — was built in a single afternoon/evening using Claude Code as a pair programmer. 6,700+ lines of code across 44 files, 6 dashboard pages, 3 data integrations, passkey auth, and an AI chat interface.
+
+**Real data pipelines, not mock data.** Every number on the dashboard is live — Strava activities, bank balances from SimpleFIN, investment values from Vanguard and M1. The cron infrastructure runs 24/7 on owned hardware.
+
+**Information architecture for humans.** The Palantir-inspired design prioritizes density and scannability. Every widget earns its screen space. The effort chart replaces a text list. The task checkboxes are one-click, not two-screen.
+
+**AI as a system layer.** The financial advisor isn't a chatbot bolted on — it has full read access to the database and builds context-aware prompts from real account data, profile facts, and conversation history.
+
+## Stack
+
+Next.js 16, TypeScript, Blueprint.js v6, Neon Postgres, Drizzle ORM, Recharts, @dnd-kit, WebAuthn, Anthropic Claude API, SimpleFIN, Strava API, Playwright (screenshots), Vercel, Hetzner VPS.
