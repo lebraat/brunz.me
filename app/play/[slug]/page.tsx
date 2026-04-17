@@ -8,8 +8,9 @@ export function generateStaticParams() {
   return getAllPlaySlugs().map((slug) => ({ slug }));
 }
 
-export function generateMetadata({ params }: { params: { slug: string } }) {
-  const entry = getPlayEntry(params.slug);
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const entry = getPlayEntry(slug);
   if (!entry) return { title: "Not Found" };
 
   return {
@@ -21,9 +22,10 @@ export function generateMetadata({ params }: { params: { slug: string } }) {
 export default async function PlayPage({
   params,
 }: {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }) {
-  const entry = getPlayEntry(params.slug);
+  const { slug } = await params;
+  const entry = getPlayEntry(slug);
 
   if (!entry) {
     notFound();

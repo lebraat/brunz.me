@@ -8,8 +8,9 @@ export function generateStaticParams() {
   return getAllWorkSlugs().map((slug) => ({ slug }))
 }
 
-export function generateMetadata({ params }: { params: { slug: string } }) {
-  const entry = getWorkEntry(params.slug)
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params
+  const entry = getWorkEntry(slug)
   if (!entry) return { title: 'Not Found' }
 
   return {
@@ -18,8 +19,9 @@ export function generateMetadata({ params }: { params: { slug: string } }) {
   }
 }
 
-export default async function WorkPage({ params }: { params: { slug: string } }) {
-  const entry = getWorkEntry(params.slug)
+export default async function WorkPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params
+  const entry = getWorkEntry(slug)
 
   if (!entry) {
     notFound()
