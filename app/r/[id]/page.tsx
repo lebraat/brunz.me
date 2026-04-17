@@ -8,8 +8,9 @@ export function generateStaticParams() {
   return getAllResumeIds().map((id) => ({ id }))
 }
 
-export function generateMetadata({ params }: { params: { id: string } }) {
-  const resume = getResume(params.id)
+export async function generateMetadata({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = await params
+  const resume = getResume(id)
   if (!resume) return { title: 'Not Found' }
 
   return {
@@ -21,8 +22,9 @@ export function generateMetadata({ params }: { params: { id: string } }) {
   }
 }
 
-export default async function ResumePage({ params }: { params: { id: string } }) {
-  const resume = getResume(params.id)
+export default async function ResumePage({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = await params
+  const resume = getResume(id)
 
   if (!resume) {
     notFound()
