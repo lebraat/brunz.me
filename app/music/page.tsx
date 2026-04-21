@@ -82,7 +82,7 @@ export default async function Music() {
 
         {error && (
           <p className="text-[13px] text-neutral-400">
-            Could not load playlists. Check back later.
+            Could not load playlists: {error}
           </p>
         )}
 
