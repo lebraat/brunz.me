@@ -2,6 +2,9 @@ import PageLayout from "@/components/PageLayout";
 import { getPublicPlaylists } from "@/lib/spotify";
 import type { SpotifyPlaylist } from "@/lib/spotify";
 
+// Revalidate once per month (static + ISR)
+export const revalidate = 2592000;
+
 function formatRelative(iso: string): string {
   const then = new Date(iso).getTime();
   const now = Date.now();
