@@ -2,8 +2,8 @@ import PageLayout from "@/components/PageLayout";
 import { getPublicPlaylists } from "@/lib/spotify";
 import type { SpotifyPlaylist } from "@/lib/spotify";
 
-// Revalidate once per month (static + ISR)
-export const revalidate = 2592000;
+// Render at request time so Spotify env vars are available
+export const dynamic = "force-dynamic";
 
 function formatRelative(iso: string): string {
   const then = new Date(iso).getTime();
