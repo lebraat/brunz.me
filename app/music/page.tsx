@@ -63,7 +63,7 @@ export default async function Music() {
   try {
     playlists = await getPublicPlaylists();
   } catch (e) {
-    error = e instanceof Error ? e.message : "Failed to load playlists";
+    error = e instanceof Error ? `${e.name}: ${e.message}` : String(e);
   }
 
   const sorted = [...playlists].sort((a, b) => {
