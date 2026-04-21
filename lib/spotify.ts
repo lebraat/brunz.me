@@ -23,6 +23,7 @@ async function getAccessToken(): Promise<string> {
   const clientSecret = process.env.SPOTIFY_CLIENT_SECRET;
 
   if (!clientId || !clientSecret) {
+    console.error("[Spotify] Missing credentials", { hasClientId: !!clientId, hasClientSecret: !!clientSecret });
     throw new Error("Missing Spotify credentials");
   }
 
@@ -37,6 +38,8 @@ async function getAccessToken(): Promise<string> {
   });
 
   if (!res.ok) {
+    const body = await res.text();
+    console.error("[Spotify] Token fetch failed", { status: res.status, body });
     throw new Error("Failed to get Spotify access token");
   }
 
@@ -57,6 +60,8 @@ export async function getPublicPlaylists(): Promise<SpotifyPlaylist[]> {
     });
 
     if (!res.ok) {
+      const body = await res.text();
+      console.error("[Spotify] Playlist fetch failed", { status: res.status, body });
       throw new Error("Failed to fetch playlists");
     }
 
