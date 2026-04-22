@@ -2,8 +2,8 @@ import PageLayout from "@/components/PageLayout";
 import { getPublicPlaylists } from "@/lib/spotify";
 import type { SpotifyPlaylist } from "@/lib/spotify";
 
-// Render at request time so Spotify env vars are available
-export const dynamic = "force-dynamic";
+// Revalidate monthly — mostly static, refreshes playlist data periodically
+export const revalidate = 2592000;
 
 function formatRelative(iso: string): string {
   const then = new Date(iso).getTime();
@@ -63,7 +63,7 @@ export default async function Music() {
   try {
     playlists = await getPublicPlaylists();
   } catch (e) {
-    error = e instanceof Error ? `${e.name}: ${e.message}` : String(e);
+    error = e instanceof Error ? e.message : "Failed to load playlists";
   }
 
   const sorted = [...playlists].sort((a, b) => {
@@ -82,7 +82,7 @@ export default async function Music() {
 
         {error && (
           <p className="text-[13px] text-neutral-400">
-            Could not load playlists: {error}
+            Could not load playlists. Check back later.
           </p>
         )}
 
