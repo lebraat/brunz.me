@@ -39,16 +39,23 @@ export default async function ResumePage({ params }: { params: Promise<{ id: str
         </div>
 
         {/* Header */}
-        <header className="mb-6">
-          <h1 className="text-[15px] font-semibold leading-snug tracking-tight">
-            Daniel Brunsdon
-          </h1>
-          <p className="text-[13px] text-neutral-400 mt-1">
-            Denver, CO &middot;{' '}
-            <a href="https://linkedin.com/in/danbrunsdon" target="_blank" rel="noopener noreferrer" className="hover:text-neutral-200 transition-colors">linkedin.com/in/danbrunsdon</a>
-            {' '}&middot;{' '}
-            <a href="https://x.com/lebraat" target="_blank" rel="noopener noreferrer" className="hover:text-neutral-200 transition-colors">@lebraat</a>
-          </p>
+        <header className="mb-6 flex items-center gap-4">
+          <img
+            src="/avatar.png"
+            alt="Daniel Brunsdon"
+            className="w-12 h-12 rounded-full object-cover flex-shrink-0"
+          />
+          <div>
+            <h1 className="text-[15px] font-semibold leading-snug tracking-tight">
+              Daniel Brunsdon
+            </h1>
+            <p className="text-[13px] text-neutral-400 mt-1">
+              Denver, CO &middot;{' '}
+              <a href="https://linkedin.com/in/danbrunsdon" target="_blank" rel="noopener noreferrer" className="hover:text-neutral-200 transition-colors">linkedin.com/in/danbrunsdon</a>
+              {' '}&middot;{' '}
+              <a href="https://x.com/lebraat" target="_blank" rel="noopener noreferrer" className="hover:text-neutral-200 transition-colors">@lebraat</a>
+            </p>
+          </div>
         </header>
 
         <hr className="border-neutral-200 mb-6" />
