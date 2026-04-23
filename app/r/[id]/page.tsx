@@ -44,7 +44,10 @@ export default async function ResumePage({ params }: { params: Promise<{ id: str
             Daniel Brunsdon
           </h1>
           <p className="text-[13px] text-neutral-400 mt-1">
-            Denver, CO &middot; linkedin.com/in/danbrunsdon &middot; @lebraat
+            Denver, CO &middot;{' '}
+            <a href="https://linkedin.com/in/danbrunsdon" target="_blank" rel="noopener noreferrer" className="hover:text-neutral-200 transition-colors">linkedin.com/in/danbrunsdon</a>
+            {' '}&middot;{' '}
+            <a href="https://x.com/lebraat" target="_blank" rel="noopener noreferrer" className="hover:text-neutral-200 transition-colors">@lebraat</a>
           </p>
         </header>
 

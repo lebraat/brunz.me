@@ -35,7 +35,19 @@
   }
   ul,
   ol {
+    page-break-inside: auto;
+  }
+  li {
     page-break-inside: avoid;
+  }
+  h2,
+  h3,
+  h4 {
+    break-after: avoid;
+  }
+  h3 + p,
+  h4 + p {
+    break-before: avoid;
   }
 }
 
